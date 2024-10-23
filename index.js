@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const mongoose=require('mongoose');
-mongoose.connect('mongodb://localhost:27017/DB',()=>{
+mongoose.connect('mongodb://jlt-phi.vercel.app:27017/DB',()=>{
    console.log('database connected');
     
 })
