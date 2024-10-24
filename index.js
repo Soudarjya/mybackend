@@ -7,7 +7,7 @@ const authRoutes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const { notFound, errorHandler } = require('./middlewares/errorMiddleware');
-// dotenv.config();
+dotenv.config();
 const cors=require('cors');
 connectDB();
 
@@ -24,6 +24,6 @@ app.use('/api/orders', orderRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
-const PORT =4000;
+const PORT =5000;
 
 app.listen(PORT, console.log(`Server running on port ${PORT}`));

@@ -6,16 +6,14 @@ const bcrypt = require('bcryptjs');
 const asyncHandler = require('express-async-handler');
 
 const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
+    return jwt.sign({ id },process.env.JWT_SECRET, {
         expiresIn: '30d',
     });
 };
 
 // Register new user
 const registerUser = asyncHandler(async (req, res) => {
-    console.log('maaa');
     const { name, email, password } = req.body;
-    console.log(req.body);
     
     const userExists = await User.findOne({ email });
     if (userExists) {
