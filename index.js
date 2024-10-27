@@ -23,11 +23,10 @@ app.use('/api/users',authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 
-// app.use(notFound);
-// app.use(errorHandler);
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT =process.env.PORT || 5000;
 
 app.listen(PORT, console.log(`Server running on port ${PORT}`));
-
-export default app;
+module.exports=app;
