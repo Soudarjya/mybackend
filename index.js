@@ -13,7 +13,9 @@ connectDB();
 
 const app = express();
 app.get('/',(req,res)=>{
-    res.send('RAand')
+    console.log('o');
+    
+    res.send('popo')
 })
 app.use(cors());
 app.use(express.json());
@@ -21,9 +23,11 @@ app.use('/api/users',authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 
-app.use(notFound);
-app.use(errorHandler);
+// app.use(notFound);
+// app.use(errorHandler);
 
 const PORT =5000;
 
 app.listen(PORT, console.log(`Server running on port ${PORT}`));
+
+export default app;
