@@ -15,7 +15,7 @@ const app = express();
 app.get('/',(req,res)=>{
     console.log('o');
     
-    res.send('popo')
+    res.send('Hi! this is soudarjya')
 })
 app.use(cors());
 app.use(express.json());
