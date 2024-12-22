@@ -7,29 +7,27 @@ const Product = require('../models/productModel');
 // Create new order
 const addOrderItems = asyncHandler(async (req, res,next) => {
     const { productId } = req.body;
-    console.log(productId);
+    
     
   const userId = req.user.id;
-  console.log(userId);
+
   try {
     let cart = await Order.findOne({ userId });
-    console.log(cart);
+   
     let product=await Product.findOne({id:productId});
-    console.log(product);
+  
     
     if (!cart) {
       cart = new Order({
         userId,
         items: [{ productId }],
       });
-      console.log(cart);
       await cart.save();
     //   return res.status(201).json(cart);
     }
     // If cart exists, update it
      cart.items.push({ productId });
     await cart.save();
-    console.log(cart);
     res.status(200).json(product);
     // next();
   } catch (err) {
@@ -42,7 +40,8 @@ const getCart=async(req,res)=>{
   const cart=await Order.findOne({userId});
   const products=await Product.find({});
   if(!cart){
-    res.status(402);
+    
+    res.status(404).json([])
   }
   else{
   const acc=[];
@@ -53,7 +52,6 @@ const getCart=async(req,res)=>{
       }
     })
   })
-  // console.log(acc);
   res.json(acc);
 }
 }
@@ -77,11 +75,7 @@ const getOrderById = asyncHandler(
 const removeFromCart = async (req, res) => {
   const userId = req.user.id; // Get the userId from the authenticated user
   const productId = req.body.productId; // Get the productId from the request body
-//  console.log(userId);
-//  console.log(productId);
-//  console.log(userId);
- 
-//  console.log(req.body);
+
  
   try {
     //Find the product to be removed
@@ -90,12 +84,12 @@ const removeFromCart = async (req, res) => {
     
     // Find the user's cart
     const cart = await Order.findOne({ userId });
-    // console.log(cart);
+    
     
     if (!cart) {
       return res.status(404).json({ message: "Cart not found" });
     }
-    console.log(product.id);
+   
 
     // Find the index of the item to remove
     const itemIndex = cart.items.findIndex(
@@ -128,10 +122,10 @@ const removeFromCart = async (req, res) => {
 //Delete Cart
 const deleteCart=async(req,res)=>{
   const userId=req.user.id;
-  console.log(userId);
+ 
   
   const cart=await Order.deleteOne({userId});
-  console.log(cart);
+  
   res.status(402).json([]);
 }
 

@@ -13,8 +13,6 @@ connectDB();
 
 const app = express();
 app.get('/',(req,res)=>{
-    console.log('o');
-    
     res.send('Hi! this is soudarjya')
 })
 app.use(cors());
